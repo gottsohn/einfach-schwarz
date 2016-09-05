@@ -161,6 +161,21 @@
     .bg {
       background-image: url({image:Background});
     }
+    @keyframes fade {
+        from { opacity: 1.0; }
+        50% { opacity: 0.2; }
+        to { opacity: 1.0; }
+    }
+    
+    @-webkit-keyframes fade {
+        from { opacity: 1.0; }
+        50% { opacity: 0.2; }
+        to { opacity: 1.0; }
+    }
+    .blink {
+       animation:fade 1500ms infinite;
+        -webkit-animation:fade 1500ms infinite;
+    }
     {block:ifBackgroundMusicURL}
     .background-music-player {
         position: fixed;
@@ -172,14 +187,25 @@
         border: 0;
         bottom: 0;
     }
+    .floating-audio-button {
+        position: fixed;
+        color:#fff;
+        top: 1.5vh;
+        right: 20px;
+        cursor: pointer;
+        z-index: 10;
+    }
     {/block:ifBackgroundMusicURL}
     {CustomCSS}
   </style>
 </head>
 <body>
   {block:ifBackgroundMusicURL}
-  <audio id="bgplayer" class="background-music-player" src={text:Background Music URL} autoplay preload loop controls>
+  <audio id="bgplayer" class="background-music-player" src={text:Background Music URL} autoplay preload loop>
   </audio>
+  <div class="floating-audio-button">
+      <i id="playButton" class="fa fa-2x fa-volume-off"></i>
+  </div>
   {/block:ifBackgroundMusicURL}
   <div class="screen"></div>
   
@@ -717,10 +743,36 @@
   {block:ifBackgroundMusicURL}
   <script>
       var bgplayer = document.getElementById('bgplayer');
+      var playButton = document.getElementById('playButton');
       var volume = parseFloat({text:Audio Player Volume}) / 100
       bgplayer.volume = volume;
+      var isPlaying = false;
+      
+      var updatePlayButton = function(id) {
+        isPlaying = !bgplayer.paused;
+        id.className = isPlaying ? 'blink fa fa-2x fa-volume-up' :
+            'fa fa-2x fa-volume-off';
+      };
+      
+      bgplayer.onpause = function() {
+        updatePlayButton(playButton);  
+      };
+      
+      var playMusic = function (id) {
+        updatePlayButton(playButton);
+        if (isPlaying) {
+            bgplayer.pause();
+        } else {
+            bgplayer.play();
+        }
+      };
+      
       bgplayer.onplaying = function() {
-        // 
+        updatePlayButton(playButton);
+      };
+      
+      playButton.onclick = function (e) {
+         playMusic(e.target || e.srcElement);
       };
       
   </script>
