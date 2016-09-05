@@ -38,7 +38,8 @@
   <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 1 },
           visibleStyle: { opacity: 1 }" title="None">
   <meta name="text:Background Music URL" content="">
-  <meta name="text:Audio Player Transparency" content="0.5">
+  <meta name="text:Audio Player Transparency" content="0.5" title="Range 0.0 to 1.0">
+  <meta name="text:Audio Player Volume" content="50" title="Range 0 - 100">
   <meta name="text:Behance URL" content="">
   <meta name="text:Bitbucket URL" content="">
   <meta name="text:Codepen URL" content="">
@@ -715,8 +716,13 @@
   <script src="http://static.tumblr.com/rmdpomz/7Cynp4hhg/main.min.js"></script>
   {block:ifBackgroundMusicURL}
   <script>
-      var bgplayer = $('#bgplayer');
-      bgplayer.volume = 0.4;
+      var bgplayer = document.getElementById('bgplayer');
+      var volume = parseFloat({text:Audio Player Volume}) / 100
+      bgplayer.volume = volume;
+      bgplayer.onplaying = function() {
+        // 
+      };
+      
   </script>
   {/block:ifBackgroundMusicURL}
   {block:PermalinkPage}
