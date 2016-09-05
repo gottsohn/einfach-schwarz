@@ -1,0 +1,732 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {block:Description}
+  <meta name="description" content="{MetaDescription}">
+  {/block:Description}
+  
+  <title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
+  
+  <link rel="apple-touch-icon" href="{PortraitURL-128}">
+  <link rel="shortcut icon" href="{Favicon}">
+  <link rel="canonical" href="{block:IndexPage}{BlogURL}{/block:IndexPage}{block:PermalinkPage}{Permalink}{/block:PermalinkPage}">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  
+  <!--
+    Theme: Einfach Schwarz
+    Version: 1.0
+    fisicallyfeet.tumblr.com
+  -->
+  
+  {block:Hidden}
+  <meta name="image:Background" content="">
+  <meta name="color:Background" content="#252325">
+  <meta name="color:Text" content="#252325">
+  <meta name="color:Alternate Text" content="#fff">
+  <meta name="color:Header Text" content="#fff">
+  <meta name="color:Post Background" content="#fff">
+  <meta name="select:Pagination" content="" title="Previous/Next">
+  <meta name="select:Pagination" content="infinite-scroll" title="Infinite Scroll">
+  <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 0 },
+          visibleStyle: { opacity: 1 }" title="Fade">
+  <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 0, transform: 'scale(0.001)' },
+          visibleStyle: { opacity: 1, transform: 'scale(1)' }" title="Scale">
+  <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 0, transform: 'translateY(50px)' },
+          visibleStyle: { opacity: 1, transform: 'translateY(0)'}" title="Slide">        
+  <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 1 },
+          visibleStyle: { opacity: 1 }" title="None">
+  <meta name="text:Behance URL" content="">
+  <meta name="text:Bitbucket URL" content="">
+  <meta name="text:Codepen URL" content="">
+  <meta name="text:Deviant Art URL" content="">
+  <meta name="text:Dribble URL" content="">
+  <meta name="text:Email Address" content="">
+  <meta name="text:Facebook URL" content="">
+  <meta name="text:Flickr URL" content="">
+  <meta name="text:GitHub URL" content="">
+  <meta name="text:Google Plus URL" content="">
+  <meta name="text:Instagram URL" content="">
+  <meta name="text:Linkedin URL" content="">
+  <meta name="text:Medium URL" content="">
+  <meta name="text:Pinterest URL" content="">
+  <meta name="text:Soundcloud URL" content="">
+  <meta name="text:Spotify URL" content="">
+  <meta name="text:Twitch URL" content="">
+  <meta name="text:Twitter URL" content="">
+  <meta name="text:Vimeo URL" content="">
+  <meta name="text:Vine URL" content="">
+  <meta name="text:YouTube URL" content="">
+  <meta name="text:Website URL" content="">
+  <meta name="text:Disqus Shortname" content="">
+  {/block:Hidden}
+  
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet" type="text/css">
+  <link href="http://static.tumblr.com/rmdpomz/1ulnp699h/main.min.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      background-color: {color:Background};
+      color: {color:Text};
+    }
+    a {
+      color: {AccentColor};
+    }
+    a:hover {
+      border-bottom: 2px solid {AccentColor};
+    }
+    .site-header {
+      color: {color:Header Text};
+    }
+    {block:IndexPage}
+    .site-header {
+      display: table;
+      height: 100%;
+      min-height: 480px;
+      padding: 0;
+      position: relative;
+      width: 100%;
+    }
+    {/block:IndexPage}
+    .site-header__open-nav {
+      color: {color:Header Text};
+    }
+    {block:IndexPage}
+    .site-header__inner {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    {/block:IndexPage}
+    .site-header__scroll-hint {
+      color: {color:Header Text};
+    }
+    {block:PermalinkPage}
+    .post {
+      margin: 0 auto;
+      max-width: 800px;
+      width: 100%;
+    }
+    {/block:PermalinkPage}
+    .post__inner {
+      background-color: {color:Post Background};
+    }
+    {block:PermalinkPage}
+    @media (min-width: 530px) {
+      .post__inner {
+        padding: 3rem;
+      }   
+    }
+    {/block:PermalinkPage}
+    .post--quote .post__inner {
+      border: 2px solid {color:Alternate Text};
+      color: {color:Alternate Text};
+    }
+    .post--link .post__inner {
+      border: 2px solid {color:Alternate Text};
+      color: {color:Alternate Text};
+    }
+    .post--link__link {
+      border-bottom: 2px solid {AccentColor};
+    }
+    .post--answer__asker {
+      background-color: {color:Text};
+      color: {color:Post Background};
+    }
+    .post-share {
+      background-color: {color:Post Background};
+    }
+    .post-share__item a {
+      color: {color:Text};
+    }
+    .post-share__item a:hover {
+      box-shadow: -2px 0 0 0 {AccentColor};
+      color: {color:Text};
+    }
+    .pagination {
+      color: {color:Header Text};
+    }
+    .pagination__previous {
+      color: {color:Header Text};
+    }
+    .pagination__next {
+      color: {color:Header Text};
+    }
+    .site-footer {
+      color: {color:Header Text};
+    }
+    .bg {
+      background-image: url({image:Background});
+    }
+
+    {CustomCSS}
+  </style>
+</head>
+<body>
+  <div class="screen"></div>
+  
+  <div class="bg"></div>
+
+  <nav role="navigation" class="site-nav hidden">
+    <button type="button" class="site-nav__close-nav">
+        <i class="fa fa-close">&nbsp; {lang:Close}</i>
+    </button>
+    
+    <ul class="pages-nav">
+      <li class="pages-nav__item"><a href="/">{lang:Home}</a></li>
+      {block:HasPages}
+      {block:Pages}
+      <li class="pages-nav__item"><a href="{URL}">{Label}</a></li>
+      {/block:Pages}
+      {/block:HasPages}
+      {block:AskEnabled}
+      <li class="pages-nav__item--secondary">
+        <a href="/ask">{AskLabel}</a>
+      </li>
+      {/block:AskEnabled}
+      {block:SubmissionsEnabled} 
+      <li class="pages-nav__item--secondary">
+        <a href="/submit">{SubmitLabel}</a>
+      </li>
+      {/block:SubmissionsEnabled}
+      <li class="pages-nav__item--secondary">
+        <a href="/archive">{lang:Archive}</a>
+      </li>
+      <li class="pages-nav__item--secondary">
+        <a href="/random">{lang:Random}</a>
+      </li>
+      <li class="pages-nav__item--secondary">
+        <a href="{RSS}">{lang:RSS}</a>
+      </li>
+    </ul>
+
+    <form id="site-search" action="/search" method="get" class="site-search">
+      <input role="textbox" type="text" placeholder="{lang:Search}" name="q" value="{SearchQuery}" class="site-search__field">
+      <button role="button" type="submit" class="button site-search__button">
+          <i class="fa fa-search"></i>
+      </button>
+    </form>
+    
+    <ul class="social-nav">
+      {block:ifBehanceURL}
+      <li class="social-nav__item">
+        <a href="{text:BehanceURL}"><i class="fa fa-behance"></i></a>
+      </li>
+      {/block:ifBehanceURL}
+
+      {block:ifBitbucketURL}
+      <li class="social-nav__item">
+        <a href="{text:BitbucketURL}"><i class="fa fa-bitbucket"></i></a>
+      </li>
+      {/block:ifBitbucketURL}
+
+      {block:ifCodepenURL}
+      <li class="social-nav__item">
+        <a href="{text:CodepenURL}"><i class="fa fa-codepen"></i></a>
+      </li>
+      {/block:ifCodepenURL}
+
+      {block:ifDeviantArtURL}
+      <li class="social-nav__item">
+        <a href="{text:DeviantArtURL}"><i class="fa fa-deviantart"></i></a>
+      </li>
+      {/block:ifDeviantArtURL}
+
+      {block:ifdribbleURL}
+      <li class="social-nav__item">
+        <a href="{text:DribbbleURL}"><i class="fa fa-dribbble"></i></a>
+      </li>
+      {/block:ifdribbleURL}
+
+      {block:ifEmailAddress}
+      <li class="social-nav__item">
+        <a href="mailto:{text:Email Address}"><i class="fa fa-envelope"></i></a>
+      </li>
+      {/block:ifEmailAddress}
+
+      {block:iffacebookURL}
+      <li class="social-nav__item">
+        <a href="{text:Facbook URL}"><i class="fa fa-facebook"></i></a>
+      </li>
+      {/block:iffacebookURL}
+
+      {block:ifflickrURL}
+      <li class="social-nav__item">
+        <a href="{text:FlickrURL}"><i class="fa fa-flickr"></i></a>
+      </li>
+      {/block:ifflickrURL}
+
+      {block:ifGitHubURL}
+      <li class="social-nav__item">
+        <a href="{text:GitHubURL}"><i class="fa fa-github"></i></a>
+      </li>
+      {/block:ifGitHubURL}
+
+      {block:ifGooglePlusURL}
+      <li class="social-nav__item">
+        <a href="{text:GooglePlusURL}"><i class="fa fa-google-plus"></i></a>
+      </li>
+      {/block:ifGooglePlusURL}
+
+      {block:ifInstagramURL}
+      <li class="social-nav__item">
+        <a href="{text:Instagram URL}"><i class="fa fa-instagram"></i></a>
+      </li>
+      {/block:ifInstagramURL}
+
+      {block:ifLinkedinURL}
+      <li class="social-nav__item">
+        <a href="{text:LinkedinURL}"><i class="fa fa-linkedin"></i></a>
+      </li>
+      {/block:ifLinkedinURL}
+
+      {block:ifMediumURL}
+      <li class="social-nav__item">
+        <a href="{text:Medium}"><i class="fa fa-medium"></i></a>
+      </li>
+      {/block:ifMediumURL}
+
+      {block:ifPinterestURL}
+      <li class="social-nav__item">
+        <a href="{text:Pinterest URL}"><i class="fa fa-pinterest"></i></a>
+      </li>
+      {/block:ifPinterestURL}
+
+      {block:ifSoundcloudURL}
+      <li class="social-nav__item">
+        <a href="{text:SoundcloudURL}"><i class="fa fa-soundcloud"></i></a>
+      </li>
+      {/block:ifSoundcloudURL}
+      
+      {block:ifSpotifyURL}
+      <li class="social-nav__item">
+        <a href="{text:SpotifyURL}"><i class="fa fa-spotify"></i></a>
+      </li>
+      {/block:ifSpotifyURL}
+
+      {block:ifTwitchURL}
+      <li class="social-nav__item">
+        <a href="{text:TwitchURL}"><i class="fa fa-twitch"></i></a>
+      </li>
+      {/block:ifTwitchURL}
+      
+      {block:ifTwitterURL}
+      <li class="social-nav__item">
+        <a href="{text:Twitter URL}"><i class="fa fa-twitter"></i></a>
+      </li>
+      {/block:ifTwitterURL}
+
+      {block:ifVimeoURL}
+      <li class="social-nav__item">
+        <a href="{text:VimeoURL}"><i class="fa fa-vimeo-square"></i></a>
+      </li>
+      {/block:ifVimeoURL}
+
+      {block:ifVineURL}
+      <li class="social-nav__item">
+        <a href="{text:Vine URL}"><i class="fa fa-vine"></i></a>
+      </li>
+      {/block:ifVineURL}
+
+      {block:ifYouTubeURL}
+      <li class="social-nav__item">
+        <a href="{text:YouTubeURL}"><i class="fa fa-youtube"></i></a>
+      </li>
+      {/block:ifYouTubeURL}
+
+      {block:ifWebsiteURL}
+      <li class="social-nav__item">
+        <a href="{text:WebsiteURL}"><i class="fa fa-globe"></i></a>
+      </li>
+      {/block:ifWebsiteURL}
+    </ul>
+  </nav>
+  
+  <div class="container">
+    <header role="banner" class="site-header">
+      <button role="button" type="button" class="site-header__open-nav">
+          <i class="fa fa-bars">&nbsp; Menu</i>
+      </button>
+      
+      <div class="site-header__inner">
+        {block:IndexPage}
+        {block:ShowAvatar}
+        <a href="/">
+          <img src="{PortraitURL-128}" class="site-header__avatar">
+        </a>
+        {/block:ShowAvatar}
+        {/block:IndexPage}
+        
+        {block:ShowTitle}
+        <h1 class="site-header__title"><a href="/">{Title}</a></h1>
+        {/block:ShowTitle}
+        
+        {block:IndexPage}
+        {block:ShowDescription}
+        {block:Description}
+        <div class="site-header__description">
+          {Description}
+        </div>
+        {/block:Description}
+        {/block:ShowDescription}
+        {/block:IndexPage}
+        
+        {block:SearchPage}
+        <div class="results">
+          <p>{lang:Found SearchResultCount results for SearchQuery 2}</p>
+          {block:NoSearchResults}
+          <p>{lang:No results for SearchQuery 2}</p>
+          {/block:NoSearchResults}
+        </div>
+        {/block:SearchPage}
+
+        {block:TagPage}
+        <div class="results">
+          <p>{lang:TagResultCount posts tagged Tag}</p>
+        </div>
+        {/block:TagPage}
+        
+        {block:IndexPage}
+        <a href="#posts" class="site-header__scroll-hint">
+          <i class="fa fa-angle-down"></i>
+        </a>
+        {/block:IndexPage}
+      </div>
+    </header>
+
+    <main role="main" id="posts" class="posts {block:IndexPage}grid{/block:IndexPage} {select:Pagination}">
+      {block:Posts}
+      <article class="post post--{PostType} {block:IndexPage}grid__unit{/block:IndexPage}">
+        <div class="post__inner">
+          {block:Text}
+          {block:Title}
+          <h3 class="post__title">
+            <a href="{Permalink}">{Title}</a>
+          </h3>
+          {/block:Title}
+          {block:Body}
+          {Body}
+          {/block:Body}
+          {/block:Text}
+
+          {block:Quote}
+          <blockquote class="post--quote__quote">
+            &#8220;{Quote}&#8221;
+          </blockquote>
+          {block:Source}
+          <p class="post--quote__source">
+            {Source}
+          </p>
+          {/block:Source}
+          {/block:Quote}
+
+          {block:Link}
+          <p class="post--link__host">
+            {Host}
+          </p>
+          <a href="{URL}" {Target} class="post--link__link">
+            {block:Host} 
+            
+            {/block:Host}
+            {Name}&nbsp; <i class="fa fa-long-arrow-right"></i>
+          </a>
+          {block:Description}
+          <div class="post__description">
+            {Description}
+          </div>
+          {/block:Description}
+          {/block:Link}
+
+          {block:Audio}
+          {block:AlbumArt}
+          <img src="{AlbumArtURL}" class="post--audio__album-cover">
+          {/block:AlbumArt}
+          {block:AudioEmbed}
+            {AudioEmbed}
+          {/block:AudioEmbed}
+          {block:AudioPlayer}
+            {AudioPlayer}
+          {/block:AudioPlayer}
+          <div class="post--audio__artist-info">
+            {block:Artist}
+            <span class="post--audio__artist">
+              {Artist} - 
+            </span>
+            {/block:Artist}
+            {block:Album}
+            {Album} - 
+            {/block:Album}
+            {block:TrackName}
+            {TrackName}
+            {/block:TrackName}
+          </div>
+          {block:Caption}
+          <div class="post--audio__caption">
+          {Caption}
+          </div>
+          {/block:Caption}
+          {/block:Audio}
+
+          {block:Photo}
+          <figure>
+            {block:IndexPage}
+            {block:HighRes}
+            <button role="button" type="button" class="post--photo__highres-toggle">
+              <i class="fa fa-expand"></i>
+              <i class="fa fa-circle-o-notch"></i>
+            </button>
+            {/block:HighRes}
+            {/block:IndexPage}
+            {block:IndexPage}
+            {block:LinkURL}
+            <a href="{LinkURL}">
+            {/block:LinkURL}
+              <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" data-highres="{PhotoURL-highres}" class="post--photo__photo">
+            {block:LinkURL}
+            </a>
+            {/block:LinkURL}
+            {/block:IndexPage}
+            {block:PermalinkPage}
+            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-highres="{PhotoURL-highres}" class="post--photo__photo">
+            {/block:PermalinkPage}
+            {block:Caption}
+            <figcaption>{Caption}</figcaption>
+            {/block:Caption}
+          </figure>
+          {/block:Photo}
+
+          {block:Photoset}
+          <figure class="post--photo__photoset" data-layout="{PhotosetLayout}" data-id="photoset{PostID}">
+            {block:Photos}
+            {block:IndexPage}
+            <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" data-highres="{PhotoURL-highres}">
+            {/block:IndexPage}
+            {block:PermalinkPage}
+            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" data-highres="{PhotoURL-highres}">
+            {/block:PermalinkPage}
+            {block:Caption}
+              {Caption}
+            {/block:Caption}
+            {/block:Photos}
+            {block:Caption}
+            <figcaption>{Caption}</figcaption>
+            {/block:Caption}
+          </figure>
+          {/block:Photoset}
+
+          {block:Panorama}
+          <figure>
+            {block:LinkURL}
+            <a href="{LinkURL}">
+            {/block:LinkURL}
+            <img src="{PhotoURL-Panorama}" width="{PhotoWidth-Panorama}" height="{PhotoHeight-Panorama}" alt="{PhotoAlt}">
+            {block:LinkURL}
+            </a>
+            {/block:LinkURL}
+            {block:Caption}
+            <figcaption>{Caption}</figcaption>
+            {/block:Caption}
+          </figure>
+          {/block:Panorama}
+
+          {block:Video}
+          <figure>
+            {Video-700}
+            {block:Caption}
+            <figcaption>{Caption}</figcaption>
+            {/block:Caption}
+          </figure>
+          {/block:Video}
+
+          {block:Chat}
+          {block:Title}
+          <h3 class="post__title">{Title}</h3>
+          {/block:Title}
+          <ul class="post--chat__chat-list">
+            {block:Lines}
+            <li class="post--chat__chat-item">
+              {block:Label}
+              <span class="post--chat__chat-label">{Label}</span>
+              {/block:Label}
+              <span class="post--chat__chat-line">{Line}</span>
+            </li>
+            {/block:Lines}
+          </ul>
+          {/block:Chat}
+
+          {block:Answer}
+          <section class="post--answer__asker">
+            <p>{Question}</p>
+            <span class="post--answer__handle">{Asker}</span>
+          </section>
+          {block:Answerer}
+          <section class="post--answer__answerer">
+            <p>{Answer}</p>
+          </section>
+          {/block:Answerer}
+          <p>{Replies}</p>
+          {/block:Answer}
+          
+          {block:HasTags}
+          <ul class="tags">
+            {block:Tags}
+            <li class="tags__item">
+              <a href="{TagURL}">#{Tag}</a>
+            </li>
+            {/block:Tags}
+          </ul>
+          {/block:HasTags}
+          
+          {block:Date}
+          <footer class="post-footer clearfix">
+            <ul class="post-options">
+              <li class="post-options__item">
+                <i class="fa fa-heart"></i>
+                {LikeButton}
+              </li>
+              <li class="post-options__item">
+                <a href="{ReblogURL}" class="post-options__reblog">
+                  <i class="fa fa-refresh"></i>
+                </a>
+              </li>
+              <li class="post-options__item">
+                <a class="post-options__toggle-share">
+                  <i class="fa fa-share-alt"></i>
+                </a>
+                <ul class="post-share">
+                  <li class="post-share__item">
+                    <a href="http://www.facebook.com/sharer.php?u={Permalink}">
+                      Facebook
+                    </a>
+                  </li>
+                  <li class="post-share__item">
+                    <a href="http://twitter.com/share?url={Permalink}">
+                      Twitter
+                    </a>
+                  </li>
+                  <li class="post-share__item">
+                    <a href="mailto:?Body={Permalink}">
+                      Email
+                    </a>
+                  </li>
+                  <li class="post-share__item">
+                    <a href="{Permalink}/embed">
+                      Embed
+                    </a>
+                  </li>
+                  <li class="post-share__item">
+                    <a href="{Permalink}">
+                      Permalink
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            
+            <div class="post-info">
+              <div class="post-info__date">
+                <a href="{Permalink}">{TimeAgo}</a>
+              </div>
+              {block:NoteCount}
+              <span class="post-info__note-count">
+                <a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+              </span>
+              {/block:NoteCount} 
+              {block:ifDisqusShortname}
+              <span class="post-info__comment-count">
+                <a href="{Permalink}#disqus_thread">
+                  {lang:View comments}
+                </a>
+              </span>
+              {/block:ifDisqusShortname}
+            </div>
+          </footer>
+          
+          {block:PermalinkPage}
+          {block:ifDisqusShortname}
+          <div id="disqus_thread"></div>
+          {block:ifDisqusShortname}
+
+          {block:PostNotes} 
+          {PostNotes-16}
+          {/block:PostNotes}
+          {/block:PermalinkPage}
+          {/block:Date}
+        </div>
+      </article>
+      {/block:Posts}
+    </main>
+    
+    {block:Pagination}
+    <div class="pagination {select:Pagination}">
+      {block:PreviousPage}
+      <a href="{PreviousPage}" class="pagination__previous">
+        <i class="fa fa-angle-left"></i>&nbsp;{lang:Previous}
+      </a>
+      {/block:PreviousPage}
+      {block:NextPage}
+      <a href="{NextPage}" class="pagination__next">
+        {lang:Next}&nbsp;<i class="fa fa-angle-right"></i>
+      </a>
+      {/block:NextPage}
+    </div>
+    {/block:Pagination}
+
+    {block:PermalinkPagination}
+    <div class="pagination">
+      {block:PreviousPost}
+      <a href="{PreviousPost}" class="pagination__previous"><i class="fa fa-angle-left"></i>&nbsp;{lang:Previous post}</a>
+      {/block:PreviousPost}
+      {block:NextPost}
+      <a href="{NextPost}" class="pagination__next">{lang:Next post}&nbsp;<i class="fa fa-angle-right"></i></a>
+      {/block:NextPost}
+    </div>
+    {/block:PermalinkPagination}
+
+    <footer class="site-footer">
+      <small>
+        {block:ShowTitle}
+          {Title} 
+        {/block:ShowTitle}
+        &copy; {CopyrightYears}
+      </small>
+    </footer>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="http://static.tumblr.com/7esz91z/bABnoywd6/vendor.min.js"></script>
+  <script src="http://static.tumblr.com/rmdpomz/7Cynp4hhg/main.min.js"></script>
+  
+  {block:PermalinkPage}
+  {block:IfDisqusShortname}
+  <script type="text/javascript">
+    var disqus_shortname = '{text:Disqus Shortname}';
+    var disqus_url = '{Permalink}';
+    $.getScript('https://' + disqus_shortname + '.disqus.com/embed.js');
+  </script>
+  {/block:IfDisqusShortname}
+  {/block:PermalinkPage}
+  
+  <script>
+    $(function () {
+      var $masonryContainer = $('.grid');
+
+      $masonryContainer.imagesLoaded(function () {
+        $masonryContainer.masonry({
+          itemSelector: '.grid__unit',
+          transitionDuration: '500ms',
+          {select:Grid Loading Style}
+        });
+      });
+
+      {block:IndexPage}
+      $('.posts.infinite-scroll').infiniteScroll({
+        page: {CurrentPage} + 1,
+        loadText: '{lang:Loading}',
+        noMorePostsText: '{lang:No more posts}'
+      });
+      {/block:IndexPage}
+    });
+  </script>
+</body>
+</html>
