@@ -38,7 +38,11 @@
   <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 1 },
           visibleStyle: { opacity: 1 }" title="None">
   <meta name="text:Background Music URL" content="">
+  <meta name="color:Custom Text Color" content="#fff">
   <meta name="text:Google Analytics ID" content="">
+  <meta name="text:Custom Text 1" content="SOFTWARE ENIGNEER">
+  <meta name="text:Custom Text 2" content="T +234-809-613-XXXX">
+  <meta name="text:Custom Text 3" content="E my.email@domain.com">
   <meta name="text:Audio Player Transparency" content="0.5" title="Range 0.0 to 1.0">
   <meta name="text:Audio Player Volume" content="50" title="Range 0 - 100">
   <meta name="text:Behance URL" content="">
@@ -178,6 +182,12 @@
         -webkit-animation:fade 1500ms infinite;
     }
     {block:IndexPage} 
+    .custom-text {
+        font-family: monospace, consolas;
+        font-size: 1.2em;
+        text-align: center;
+        color: {text:Custom Text Color};
+    }
     {block:ifBackgroundMusicURL}
     .background-music-player {
         position: fixed;
@@ -418,6 +428,21 @@
         </div>
         {/block:Description}
         {/block:ShowDescription}
+        {block:ifCustomText1}
+        <div class="custom-text">
+        {text:Custom Text 1}
+        </div>
+        {/block:ifCustomText1}
+        {block:ifCustomText2}
+        <div class="custom-text">
+        {text:Custom Text 2}
+        </div>
+        {/block:ifCustomText2}
+        {block:ifCustomText3}
+        <div class="custom-text">
+        {text:Custom Text 3}
+        </div>
+        {/block:ifCustomText3}
         {/block:IndexPage}
         
         {block:SearchPage}
