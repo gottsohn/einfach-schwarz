@@ -38,6 +38,7 @@
   <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 1 },
           visibleStyle: { opacity: 1 }" title="None">
   <meta name="text:Background Music URL" content="">
+  <meta name="text:Google Analytics ID" content="">
   <meta name="text:Audio Player Transparency" content="0.5" title="Range 0.0 to 1.0">
   <meta name="text:Audio Player Volume" content="50" title="Range 0 - 100">
   <meta name="text:Behance URL" content="">
@@ -744,57 +745,64 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   <script src="http://static.tumblr.com/7esz91z/bABnoywd6/vendor.min.js"></script>
   <script src="http://static.tumblr.com/rmdpomz/7Cynp4hhg/main.min.js"></script>
-  {block:IndexPage}
-  {block:ifBackgroundMusicURL}
-  <script>
-    console.log('ready');
-    var bgplayer = null;
-    var playButton = document.getElementById('playButton');
-    var isPlaying = false;
-
-    var setupAudioPlayer = function () {
-        bgplayer = new Audio();
-        bgplayer.onpause = function() {
-            updatePlayButton(playButton);  
+    {block:ifGoogleAnalyticsID}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', '{text:Google Analytics ID}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {/block:ifGoogleAnalyticsID}
+    {block:ifBackgroundMusicURL}
+    <script>
+        var bgplayer = null;
+        var playButton = document.getElementById('playButton');
+        var isPlaying = false;
+        var setupAudioPlayer = function () {
+            bgplayer = new Audio();
+            bgplayer.onpause = function() {
+                updatePlayButton(playButton);  
+            };
+            
+            bgplayer.onplaying = function() {
+                updatePlayButton(playButton);
+            };
+            
+            bgplayer.src = '{text:Background Music URL}';
+            bgplayer.loop = true;
+            bgplayer.preload = true;
+            bgplayer.autoplay = true;    
+            bgplayer.volume = parseFloat({text:Audio Player Volume}) / 100;
         };
         
-        bgplayer.onplaying = function() {
+        var updatePlayButton = function(id) {
+            isPlaying = !bgplayer.paused;
+            id.className = isPlaying ? 'blink fa fa-2x fa-volume-up' :
+                'fa fa-2x fa-volume-off';
+        };
+        
+        var playMusic = function (id) {
             updatePlayButton(playButton);
+            if (isPlaying) {
+                bgplayer.pause();
+            } else {
+                bgplayer.play();
+            }
         };
         
-        bgplayer.src = '{text:Background Music URL}';
-        bgplayer.loop = true;
-        bgplayer.preload = true;
-        bgplayer.autoplay = true;    
-        bgplayer.volume = parseFloat({text:Audio Player Volume}) / 100;
-    };
-
-    var updatePlayButton = function(id) {
-        isPlaying = !bgplayer.paused;
-        id.className = isPlaying ? 'blink fa fa-2x fa-volume-up' :
-            'fa fa-2x fa-volume-off';
-    };
-    
-    var playMusic = function (id) {
-        updatePlayButton(playButton);
-        if (isPlaying) {
-            bgplayer.pause();
-        } else {
-            bgplayer.play();
-        }
-    };
-    
-    playButton.onclick = function (e) {
-        if (bgplayer) {
-            playMusic(e.target || e.srcElement);
-        }
-    };
-    
-    setupAudioPlayer();
-    bgplayer.play();
-  </script>
-  {/block:ifBackgroundMusicURL}
-  {/block:IndexPage} 
+        playButton.onclick = function (e) {
+            if (bgplayer) {
+                playMusic(e.target || e.srcElement);
+            }
+        };
+        
+        setupAudioPlayer();
+        bgplayer.play();
+    </script>
+    {/block:ifBackgroundMusicURL}
   {block:PermalinkPage}
   {block:IfDisqusShortname}
   <script type="text/javascript">
