@@ -176,6 +176,7 @@
        animation:fade 1500ms infinite;
         -webkit-animation:fade 1500ms infinite;
     }
+    {block:IndexPage} 
     {block:ifBackgroundMusicURL}
     .background-music-player {
         position: fixed;
@@ -196,17 +197,20 @@
         z-index: 10;
     }
     {/block:ifBackgroundMusicURL}
+    {/block:IndexPage} 
     {CustomCSS}
   </style>
 </head>
 <body>
-  {block:ifBackgroundMusicURL}
-  <audio id="bgplayer" class="background-music-player" src={text:Background Music URL} autoplay preload loop>
-  </audio>
-  <div class="floating-audio-button">
-      <i id="playButton" class="fa fa-2x fa-volume-off"></i>
-  </div>
-  {/block:ifBackgroundMusicURL}
+    {block:IndexPage} 
+    {block:ifBackgroundMusicURL}
+      <!--<audio id="bgplayer" class="background-music-player" src={text:Background Music URL} autoplay preload loop>-->
+      <!--</audio>-->
+      <div class="floating-audio-button">
+          <i id="playButton" class="fa fa-2x fa-volume-off"></i>
+      </div>
+      {/block:ifBackgroundMusicURL}
+    {/block:IndexPage} 
   <div class="screen"></div>
   
   <div class="bg"></div>
@@ -740,43 +744,57 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   <script src="http://static.tumblr.com/7esz91z/bABnoywd6/vendor.min.js"></script>
   <script src="http://static.tumblr.com/rmdpomz/7Cynp4hhg/main.min.js"></script>
+  {block:IndexPage}
   {block:ifBackgroundMusicURL}
   <script>
-      var bgplayer = document.getElementById('bgplayer');
-      var playButton = document.getElementById('playButton');
-      var volume = parseFloat({text:Audio Player Volume}) / 100
-      bgplayer.volume = volume;
-      var isPlaying = false;
-      
-      var updatePlayButton = function(id) {
+    console.log('ready');
+    var bgplayer = null;
+    var playButton = document.getElementById('playButton');
+    var isPlaying = false;
+
+    var setupAudioPlayer = function () {
+        bgplayer = new Audio();
+        bgplayer.onpause = function() {
+            updatePlayButton(playButton);  
+        };
+        
+        bgplayer.onplaying = function() {
+            updatePlayButton(playButton);
+        };
+        
+        bgplayer.src = '{text:Background Music URL}';
+        bgplayer.loop = true;
+        bgplayer.preload = true;
+        bgplayer.autoplay = true;    
+        bgplayer.volume = parseFloat({text:Audio Player Volume}) / 100;
+    };
+
+    var updatePlayButton = function(id) {
         isPlaying = !bgplayer.paused;
         id.className = isPlaying ? 'blink fa fa-2x fa-volume-up' :
             'fa fa-2x fa-volume-off';
-      };
-      
-      bgplayer.onpause = function() {
-        updatePlayButton(playButton);  
-      };
-      
-      var playMusic = function (id) {
+    };
+    
+    var playMusic = function (id) {
         updatePlayButton(playButton);
         if (isPlaying) {
             bgplayer.pause();
         } else {
             bgplayer.play();
         }
-      };
-      
-      bgplayer.onplaying = function() {
-        updatePlayButton(playButton);
-      };
-      
-      playButton.onclick = function (e) {
-         playMusic(e.target || e.srcElement);
-      };
-      
+    };
+    
+    playButton.onclick = function (e) {
+        if (bgplayer) {
+            playMusic(e.target || e.srcElement);
+        }
+    };
+    
+    setupAudioPlayer();
+    bgplayer.play();
   </script>
   {/block:ifBackgroundMusicURL}
+  {/block:IndexPage} 
   {block:PermalinkPage}
   {block:IfDisqusShortname}
   <script type="text/javascript">
