@@ -39,6 +39,7 @@
           visibleStyle: { opacity: 1 }" title="None">
   <meta name="text:Background Music URL" content="">
   <meta name="color:Custom Text Color" content="#fff">
+  <meta name="color:Custom Text Shadow" content="#333">
   <meta name="text:Google Analytics ID" content="">
   <meta name="text:Custom Text 1" content="SOFTWARE ENIGNEER">
   <meta name="text:Custom Text 2" content="T +234-809-613-XXXX">
@@ -186,7 +187,8 @@
         font-family: monospace, consolas;
         font-size: 1.2em;
         text-align: center;
-        color: {text:Custom Text Color};
+        color: {color:Custom Text Color};
+        text-shadow: 0 0 5px {color:Custom Text Shadow};
     }
     {block:ifBackgroundMusicURL}
     .background-music-player {
