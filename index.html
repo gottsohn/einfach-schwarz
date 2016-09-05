@@ -37,6 +37,8 @@
           visibleStyle: { opacity: 1, transform: 'translateY(0)'}" title="Slide">        
   <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 1 },
           visibleStyle: { opacity: 1 }" title="None">
+  <meta name="text:Background Music URL" content="">
+  <meta name="text:Audio Player Transparency" content="0.5">
   <meta name="text:Behance URL" content="">
   <meta name="text:Bitbucket URL" content="">
   <meta name="text:Codepen URL" content="">
@@ -158,11 +160,26 @@
     .bg {
       background-image: url({image:Background});
     }
-
+    {block:ifBackgroundMusicURL}
+    .background-music-player {
+        position: fixed;
+        width: 100%;
+        padding: 0;
+        z-index: 10;
+        opacity: {text:Audio Player Transparency};
+        margin: 0;
+        border: 0;
+        bottom: 0;
+    }
+    {/block:ifBackgroundMusicURL}
     {CustomCSS}
   </style>
 </head>
 <body>
+  {block:ifBackgroundMusicURL}
+  <audio id="bgplayer" class="background-music-player" src={text:Background Music URL} autoplay preload loop controls>
+  </audio>
+  {/block:ifBackgroundMusicURL}
   <div class="screen"></div>
   
   <div class="bg"></div>
@@ -696,7 +713,12 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   <script src="http://static.tumblr.com/7esz91z/bABnoywd6/vendor.min.js"></script>
   <script src="http://static.tumblr.com/rmdpomz/7Cynp4hhg/main.min.js"></script>
-  
+  {block:ifBackgroundMusicURL}
+  <script>
+      var bgplayer = $('#bgplayer');
+      bgplayer.volume = 0.4;
+  </script>
+  {/block:ifBackgroundMusicURL}
   {block:PermalinkPage}
   {block:IfDisqusShortname}
   <script type="text/javascript">
