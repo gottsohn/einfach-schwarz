@@ -37,6 +37,7 @@
           visibleStyle: { opacity: 1, transform: 'translateY(0)'}" title="Slide">        
   <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 1 },
           visibleStyle: { opacity: 1 }" title="None">
+  <meta name="audio:Audio File" content="">
   <meta name="text:Background Music URL" content="">
   <meta name="color:Custom Text Color" content="#fff">
   <meta name="color:Custom Text Shadow" content="#333">
@@ -217,8 +218,6 @@
 <body>
     {block:IndexPage} 
     {block:ifBackgroundMusicURL}
-      <!--<audio id="bgplayer" class="background-music-player" src={text:Background Music URL} autoplay preload loop>-->
-      <!--</audio>-->
       <div class="floating-audio-button">
           <i id="playButton" class="fa fa-2x fa-volume-off"></i>
       </div>
@@ -789,7 +788,7 @@
         var playButton = document.getElementById('playButton');
         var isPlaying = false;
         var setupAudioPlayer = function () {
-            bgplayer = new Audio();
+            bgplayer = new Audio('{text:Background Music URL}');
             bgplayer.onpause = function() {
                 updatePlayButton(playButton);  
             };
@@ -798,11 +797,26 @@
                 updatePlayButton(playButton);
             };
             
-            bgplayer.src = '{text:Background Music URL}';
+            bgplayer.onended = function() { 
+                bgplayer.play(); 
+                console.log('ended event');
+            };
+            
+            bgplayer.addEventListener('ended', function() {
+                bgplayer.currentTime = 0;
+                bgplayer.play();
+                console.log('ended');
+            }, false);
+            
+            bgplayer.oncanplay = function() {
+                bgplayer.play();    
+                console.log('can play');
+            };
+            
             bgplayer.loop = true;
-            bgplayer.preload = true;
             bgplayer.autoplay = true;    
-            bgplayer.volume = parseFloat({text:Audio Player Volume}) / 100;
+            bgplayer.volume = parseFloat({text:Audio Player Volume}) / 100;   
+            bgplayer.load();
         };
         
         var updatePlayButton = function(id) {
@@ -827,7 +841,6 @@
         };
         
         setupAudioPlayer();
-        bgplayer.play();
     </script>
     {/block:ifBackgroundMusicURL}
   {block:PermalinkPage}
