@@ -26,7 +26,11 @@
   <meta name="color:Text" content="#252325">
   <meta name="color:Alternate Text" content="#fff">
   <meta name="color:Header Text" content="#fff">
-  <meta name="color:Post Background" content="#fff">
+  <meta name="color:Post Background" content="#000">
+  <meta name="text:Post Background R" content="0">
+  <meta name="text:Post Background G" content="0">
+  <meta name="text:Post Background B" content="0">
+  <meta name="text:Post Background A" content="0.5">
   <meta name="select:Pagination" content="" title="Previous/Next">
   <meta name="select:Pagination" content="infinite-scroll" title="Infinite Scroll">
   <meta name="select:Grid Loading Style" content="hiddenStyle: { opacity: 0 },
@@ -119,7 +123,7 @@
     }
     {/block:PermalinkPage}
     .post__inner {
-      background-color: {color:Post Background};
+      background-color: rgba({text:Post Background R}, {text:Post Background G}, {text:Post Background B} , {text:Post Background A});
     }
     {block:PermalinkPage}
     @media (min-width: 530px) {
@@ -192,21 +196,11 @@
         text-shadow: 0 0 5px {color:Custom Text Shadow};
     }
     {block:ifBackgroundMusicURL}
-    .background-music-player {
-        position: fixed;
-        width: 100%;
-        padding: 0;
-        z-index: 10;
-        opacity: {text:Audio Player Transparency};
-        margin: 0;
-        border: 0;
-        bottom: 0;
-    }
     .floating-audio-button {
         position: fixed;
         color:#fff;
         top: 1.5vh;
-        right: 20px;
+        right: 10px;
         cursor: pointer;
         z-index: 10;
     }
@@ -798,19 +792,14 @@
             };
             
             bgplayer.onended = function() { 
-                bgplayer.play(); 
+                bgplayer.currentTime = 0;
+                bgplayer.play();
+                updatePlayButton(playButton); 
                 console.log('ended event');
             };
             
-            bgplayer.addEventListener('ended', function() {
-                bgplayer.currentTime = 0;
-                bgplayer.play();
-                console.log('ended');
-            }, false);
-            
             bgplayer.oncanplay = function() {
-                bgplayer.play();    
-                console.log('can play');
+                updatePlayButton(playButton); 
             };
             
             bgplayer.loop = true;
