@@ -51,7 +51,9 @@
   <meta name="text:Custom Text 3" content="E my.email@domain.com">
   <meta name="text:Audio Player Transparency" content="0.5" title="Range 0.0 to 1.0">
   <meta name="text:Audio Player Volume" content="50" title="Range 0 - 100">
+  <meta name="color:Title Shadow Color" content="#fff">
   <meta name="text:Behance URL" content="">
+  <meta name="text:Google Site Verification" content="">
   <meta name="text:Bitbucket URL" content="">
   <meta name="text:Codepen URL" content="">
   <meta name="text:Deviant Art URL" content="">
@@ -76,6 +78,7 @@
   <meta name="text:Disqus Shortname" content="">
   {/block:Hidden}
   
+  <meta name="google-site-verification" content="{text:Google Site Verification}" />
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet" type="text/css">
   <link href="http://static.tumblr.com/rmdpomz/1ulnp699h/main.min.css" rel="stylesheet" type="text/css">
@@ -188,6 +191,9 @@
         -webkit-animation:fade 1500ms infinite;
     }
     {block:IndexPage} 
+    .site-header__title {
+        text-shadow: 0 0 7px {color:Title Shadow Color};
+    }
     .custom-text {
         font-family: monospace, consolas;
         font-size: 1.2em;
@@ -282,13 +288,13 @@
 
       {block:ifDeviantArtURL}
       <li class="social-nav__item">
-        <a href="{text:DeviantArtURL}"><i class="fa fa-deviantart"></i></a>
+        <a href="{text:Deviant Art URL}"><i class="fa fa-deviantart"></i></a>
       </li>
       {/block:ifDeviantArtURL}
 
       {block:ifdribbleURL}
       <li class="social-nav__item">
-        <a href="{text:DribbbleURL}"><i class="fa fa-dribbble"></i></a>
+        <a href="{text:Dribbble URL}"><i class="fa fa-dribbble"></i></a>
       </li>
       {/block:ifdribbleURL}
 
@@ -306,13 +312,13 @@
 
       {block:ifflickrURL}
       <li class="social-nav__item">
-        <a href="{text:FlickrURL}"><i class="fa fa-flickr"></i></a>
+        <a href="{text:Flickr URL}"><i class="fa fa-flickr"></i></a>
       </li>
       {/block:ifflickrURL}
 
       {block:ifGitHubURL}
       <li class="social-nav__item">
-        <a href="{text:GitHubURL}"><i class="fa fa-github"></i></a>
+        <a href="{text:GitHub URL}"><i class="fa fa-github"></i></a>
       </li>
       {/block:ifGitHubURL}
 
@@ -330,7 +336,7 @@
 
       {block:ifLinkedinURL}
       <li class="social-nav__item">
-        <a href="{text:LinkedinURL}"><i class="fa fa-linkedin"></i></a>
+        <a href="{text:Linkedin URL}"><i class="fa fa-linkedin"></i></a>
       </li>
       {/block:ifLinkedinURL}
 
@@ -348,7 +354,7 @@
 
       {block:ifSoundcloudURL}
       <li class="social-nav__item">
-        <a href="{text:SoundcloudURL}"><i class="fa fa-soundcloud"></i></a>
+        <a href="{text:Soundcloud URL}"><i class="fa fa-soundcloud"></i></a>
       </li>
       {/block:ifSoundcloudURL}
       
@@ -360,7 +366,7 @@
 
       {block:ifTwitchURL}
       <li class="social-nav__item">
-        <a href="{text:TwitchURL}"><i class="fa fa-twitch"></i></a>
+        <a href="{text:Twitch URL}"><i class="fa fa-twitch"></i></a>
       </li>
       {/block:ifTwitchURL}
       
@@ -372,7 +378,7 @@
 
       {block:ifVimeoURL}
       <li class="social-nav__item">
-        <a href="{text:VimeoURL}"><i class="fa fa-vimeo-square"></i></a>
+        <a href="{text:Vimeo URL}"><i class="fa fa-vimeo-square"></i></a>
       </li>
       {/block:ifVimeoURL}
 
@@ -384,13 +390,13 @@
 
       {block:ifYouTubeURL}
       <li class="social-nav__item">
-        <a href="{text:YouTubeURL}"><i class="fa fa-youtube"></i></a>
+        <a href="{text:YouTube URL}"><i class="fa fa-youtube"></i></a>
       </li>
       {/block:ifYouTubeURL}
 
       {block:ifWebsiteURL}
       <li class="social-nav__item">
-        <a href="{text:WebsiteURL}"><i class="fa fa-globe"></i></a>
+        <a href="{text:Website URL}"><i class="fa fa-globe"></i></a>
       </li>
       {/block:ifWebsiteURL}
     </ul>
@@ -423,6 +429,8 @@
         </div>
         {/block:Description}
         {/block:ShowDescription}
+        <br>
+        <br>
         {block:ifCustomText1}
         <div class="custom-text">
         {text:Custom Text 1}
